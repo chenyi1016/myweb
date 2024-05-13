@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <script>
+      function get(id){
+        return document.getElementById(id);
+      }
+      function getRnd(min,max){
+        return Math.floor(Math.random()*(max-min+1))+min;
+      }
+      function newTarget(){
+        if(!game_started) return;
+        var board=get("board");
+        var bw=parseInt(getComputedStyle(board).width);
+        var bh=parseInt(getComputedStyle(board).height);
+        
+        var a=document.createElement("div");
+        a.className="target";
+        a.score=getRnd(1,3);
+        var width=[0,50,40,30];
+        var aW=width[a.score];
+        var aH=aW;
+        var r=getRnd(0,255);
+        var g=getRnd(0,255);
+        var b=getRnd(0,255);
+        //a.style.background="rgb(+r+,+g+,+b+)";
+        a.style.background=`rgb(${r},${g},${b})`;
+        a.style.width=aW+"px";
+        a.style.height=aH+"px";
+        a.style.left=getRnd(0,bw-aW)+"px";
+        a.style.top=getRnd(0,bh-aH)+"px";
+        a.addEventListener("click",hit);
+
+        board.appendChild(a);
+      }
+      function hit(ev){
+        if(!game_started) return;
+        var x=ev.target
+        score+=x.score;
+        get("score").innerHTML=score;
+        x.remove();
+      }
+      function gameStart(){
+        score=0;
+        tbw=600;
+        game_started=true;
+        t1=setInterval(newTarget,x);
+        t2=setInterval(function(){
+          tbw+=p;
+          get("timebar").style.width=tbw+"px";
+          if(tbw<=0){
+            gameStop();
+          }else if(tbw<100){
+            get("timebar").style.backgroundColor="red";
+          }
+        },100)
+      }
+      function gameStop(){
+        game_started=false;
+        clearInterval(t1);
+        clearInterval(t2);
+        alert("遊戲結束，得分:"+score);
+      }
+      x=1000
+      function haste(){
+        x-=100;
+      }
+      p=-1;
+      function time(){
+        p+=-5;
+      }
+    </script>
+    <style>
+      #board{
+        width:594px;
+        height:600px;
+        border:3px solid black;
+        position: relative;
+      }
+      #timebar{
+        width:600px;
+        height:10px;
+        background:green;
+      }
+      .target{
+        border-radius:50%;
+        position:absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div>得分:<span id="score">0</span>分</div>
+    <div id="timebar"></div>
+    <div id="board">
+      <div class="target" style="top:20px;left:30px;"></div>
+      <div class="target" style="top:50px;left:70px;"></div>
+      <div class="target" style="top:70px;left:20px;"></div>
+    </div>
+    <button onclick="gameStart();">開始</button>
+    <button onclick="gameStop();">停</button>
+    <button onclick="haste();">加速</button>
+    <button onclick="time();">更難</button>
+  </body>
+</html>

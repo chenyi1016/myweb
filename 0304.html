@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <mate charset="utf-8">
+    <title>css-2</title>
+    <style>
+      .c1 {
+        color: red;
+        background: yellow;
+        width: 100px;
+        height: 100px;
+      }
+
+      #d2 {
+        background: lightblue;
+        border: 5px dashed black;
+        /*solid實線 dashed虛線 dotted點 double雙線*/
+        border-right: 5px red double;
+        /*top right bottom left*/
+        border-style: solid dashed dotted double;
+        /*1個(4邊) 2個(上=下 左=右) 3個(上&下 左=右)*/
+        margin: 10px 0;
+        /*外邊界*/
+        padding: 10px;
+        /*內填充 */
+      }
+
+      #d3 {
+        border: 1px solid black;
+        width: 200px;
+        height: 100px;
+        border-radius: 50%;
+        /*圓角 px %*/
+      }
+
+      #d4 {
+        border: 50px solid black;
+        width: 0px;
+        height: 100px;
+        border-color: red blue green yellow;
+        border-bottom-width: 100px;
+        border-top-color: transparent;
+        /*透明*/
+      }
+    </style>
+</head>
+
+<body>
+  <div id="d1" class="c1">123</div>
+  <div id="d2" class="c1">456</div>
+  <span class="c1">abc</span>
+  <span class="c1">def</span>
+  <div id="d3"></div>
+  <div id="d4"></div>
+</body>
+
+</html>

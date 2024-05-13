@@ -1,0 +1,237 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>11811 陳冠邑 210550</title>
+  <style>
+  #face {
+    margin:10px;
+    margin-left:250PX;
+    margin-top:-75px;
+    text-align:center;
+    width:280px;
+    height:325px;
+    background:#FFD3A8;
+    border-radius:30% 30% 45% 45%;
+  }
+  #eyebrows {
+    display:inline-block;
+    
+  }
+  #eyes {
+    margin-top:50px;
+    margin-bottom:30px;
+  }
+  #nose {
+    display:inline-block;
+    width:2px;
+    height:0px;
+    border:solid transparent;
+    border-bottom-color:BLACK ;
+    border-width:0px 1px 5px 1x;
+    margin-top: -20px;
+  }
+  #mouth {
+    display:inline-block;
+    width:100px;
+    height:50px;
+    background:#E6896C;
+    margin-bottom:5px;
+    border-radius:0 0 100px 100px;
+    border-bottom:solid #FD7781 5px;
+    border-top:solid #FD7781 5px;
+    animation:m1 5s infinite linear;
+  }
+  .eyebrow {
+    display:inline-block;
+    width:60px;
+    height:25px;
+    border:solid 3px;
+    border-radius: 50%;
+    border-color:BLACK transparent transparent transparent ; 
+  }
+  .eye {
+    display:inline-block;
+    position:relative;
+    width:70px;
+    height:55px;
+    background:white;
+    border-radius:50%;
+    margin:10px;
+    z-index: 2;
+  }
+  .eyeball {
+    display:inline-block;
+    position:relative;
+    top:2px;
+    width:25px;
+    height:40px;  
+    border:solid 1px;
+    border-radius:50%;
+    background:linear-gradient(0deg,#00CBE5,#40DDE6,#0001E6);
+    animation:aa 5s infinite linear;
+  }
+  .eyeball2{
+    display:inline-block;
+    position:relative;
+    top:7px;
+    margin:5px;
+    width:10px;
+    height:15px;
+    border-radius:50%;
+    background-color: black;
+    animation:aa 5s infinite linear;
+  }
+  .tear{
+    animation: t1 5s infinite linear;
+    z-index: 1;
+  }
+  #eyebrowL {
+    transform:rotate(20deg) translate(10px,70px);
+    animation:b1 5s infinite linear;
+  }
+  #eyebrowR {
+    transform:rotate(-20deg) translate(-10px,70px);
+    animation:b2 5s infinite linear;
+  }
+  #tears {
+   margin-top:-186px;
+   margin-left: 65px;
+   border:solid 12px;
+   border-color:transparent transparent blue transparent;
+   width:0px;
+   height:0px;
+   border-bottom-width: 20px;
+  }  
+  #tears2{
+    background-color:blue;
+    width:24px;
+    height:12px;
+    border-radius:0px 0px 100px 100px;
+    margin-top:20px;
+    margin-left:-12px ;
+  }
+    
+  #hair1 {
+    margin-top:50px;
+    margin-left:210px;
+    width:180px;
+    height:80px;
+    background:black;
+    border-radius:100px 50px 90px 0px;
+    transform:rotate(-25deg);
+    animation:h1 5s infinite linear;
+  }
+  #hair2 {
+    margin-left:460px;
+    margin-top:-10px;
+    left:0px;
+    width:130px;
+    height:40px;
+    background:transparent;
+    border-radius:0px 300px 20px 300px;
+    transform:rotate(65deg);
+  }
+  #hair3 {
+    margin-top:-120px;
+    margin-left:350px;
+    width:200px;
+    height:80px;
+    background:black;
+    border-radius:50px 300px 50px 30px;
+    transform:rotate(10deg);
+    animation:h2 5s infinite linear;
+  }
+  #hair4 {
+    margin-left:320px;
+    margin-top:-20px;
+    left:0px;
+    width:100px;
+    height:40px;
+    background:black;
+    border-radius:500px 0px 20px 50px;
+    transform:rotate(-135deg);
+    animation:h3 5s infinite linear;
+    }
+  @keyframes aa {
+    0%{transform:translate(0px,0px);}
+    25%{transform:translate(0px,3px);}
+    50%{transform:translate(0px,5px);}
+    75%{transform:translate(0px,5px);}
+    100%{transform:translate(0px,7px);}
+  }
+  @keyframes b1 {
+    0%{transform:rotate(20deg) translate(10px,70px);}
+    25%{transform:rotate(10deg) translate(-5px,70px);}
+    50%{transform:rotate(0deg) translate(-15px,70px);}
+    75%{transform:rotate(-10deg) translate(-30px,65px);}
+    90%{transform:rotate(-20deg) translate(-50px,65px);}
+    100%{transform:rotate(-20deg) translate(-50px,65px);}
+  }
+  @keyframes b2 {
+    0%{transform:rotate(-20deg) translate(-10px,70px);}
+    25%{transform:rotate(-10deg) translate(5px,70px);}
+    50%{transform:rotate(0deg) translate(15px,70px);}
+    75%{transform:rotate(10deg) translate(30px,65px);}
+    90%{transform:rotate(20deg) translate(50px,65px);}
+    100%{transform:rotate(20deg) translate(50px,65px);}
+  }
+  @keyframes h1 {
+    0%{transform:rotate(-25deg);}
+    25%{transform:rotate(-28deg);}
+    50%{transform:rotate(-25deg);}
+    75%{transform:rotate(-22deg);}
+    100%{transform:rotate(-25deg);}
+  }
+  @keyframes h2 {
+    0%{transform:rotate(10deg);}
+    25%{transform:rotate(13deg);}
+    50%{transform:rotate(10deg);}
+    75%{transform:rotate(7deg);}
+    100%{transform:rotate(10deg);}
+  }
+  @keyframes h3 {
+    0%{transform:rotate(-135deg);}
+    25%{transform:rotate(-138deg);}
+    50%{transform:rotate(-135deg);}
+    75%{transform:rotate(-132deg);}
+    100%{transform:rotate(-135deg);}
+    }
+  @keyframes m1{
+    0%{transform:rotate(0deg);}
+    25%{transform:rotate(-45deg);}
+    50%{transform:rotate(-90deg);}
+    75%{transform:rotate(-135deg);}
+    90%{transform:rotate(-180deg);}
+    100%{transform:rotate(-180deg);}
+  }
+  @keyframes t1{
+    0%{transform:translate(0px,0px);}
+    25%{transform:translate(0px,10px);}
+    50%{transform:translate(0px,30px);}
+    75%{transform:translate(0px,50px);}
+    100%{transform:translate(0px,60px);}
+  }
+  </style>
+</head>
+<body>
+  <div id="hair1"></div>
+  <div id="hair2"></div>
+  <div id="hair3"></div>
+  <div id="hair4"></div>
+  <div id="face">
+    <div id="eyebrows">
+      <div id="eyebrowL" class="eyebrow"></div>
+      <div id="eyebrowR" class="eyebrow"></div>
+    </div>
+    <div id="eyes">
+      <div class="eye"><div class="eyeball"><div class="eyeball2"></div></div></div>
+      <div class="eye"><div class="eyeball"><div class="eyeball2"></div></div></div>
+    </div>
+    <div id="nose"></div>
+    
+    <br><br>
+    <div id="mouth"></div>
+    <div class="tear"><div id="tears"><div id="tears2"></div></div></div>
+  </div>
+</body>
+</html>

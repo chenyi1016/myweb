@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script>
+      function get(id){
+        return document.getElementById(id);
+      }
+      function add(){
+        x=parseInt/*parsefloat*/(get("a1").value);
+        y=parseInt(get("a2").value);
+        get("ans").value=x+y;
+      }
+
+    </script>
+  </head>
+  <body>
+    <input type="text" id="a1">+<input type="text" id="a2">
+    <button onclick="add();">=</button> <input type="text" id="ans" readonly>
+  </body>
+</html>

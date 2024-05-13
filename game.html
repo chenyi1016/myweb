@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script>
+    function get(id){
+      return document.getElementById(id);
+    }
+    function getRnd(min,max){
+      return Math.floor(Math.random()*(max-min+1))+min;
+    }
+    
+  </script>
+  <style>
+    #board{
+      width:1000px;
+      height:800px;
+      margin:auto;
+      background:;
+    }
+    #human{
+      
+    }
+    #zombie{
+      
+    }
+  </style>
+</head>
+<body onkeydown="mykey(event)">
+  <div id="board">
+    <div id="human"></div>
+    <div id="zombie"></div>
+  </div>
+</body>
+</html>

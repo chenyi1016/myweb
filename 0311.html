@@ -1,0 +1,94 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>css-漸層</title>
+  <style>
+  div{
+    width:200px;
+    height:100px;
+    margin-bottom:10px;
+  }
+  #d1{
+    /*linear-gradient(方向,色1,色2,...);線性
+    方向1:to top/right/bottom/left;
+    方向2:0~360deg(0上90右);
+    漸層不是顏色不能用color*/
+    background:linear-gradient(90deg,red,blue);
+  }
+    #d2{
+       background:linear-gradient(90deg,red 33%,white 33%,white 67%,blue 67%);
+    }
+    #d3{
+      background:linear-gradient(45deg,red,white,red);
+    }
+    #d4{
+      background:repeating-linear-gradient(100deg,red 20%,white 25%,red 30%);
+      display:inline-block;
+    }
+    #d5{
+      background:repeating-linear-gradient(100deg,red 20%,green 25%,red 30%);
+    }
+    /*radial-gradient();輻射漸層,圓心向外*/
+    #r1{
+      background:radial-gradient(/*circle,*/yellow,red,black,green);
+    }
+    #r2{
+      background:radial-gradient(circle,yellow 20%,red 30%,black,green 90%);
+    }
+    #r3{
+      background:repeating-radial-gradient(circle,yellow 25%,blue 30%,green 40%);
+      display:inline-block;
+    }
+/*conic-gradient();圓錐漸層,繞圓心轉*/
+    #c1{
+      background:conic-gradient(yellow,green,blue);
+    }
+    #c2{
+      background:repeating-conic-gradient(yellow 20%,green 30%,blue 40%);
+    }
+
+    @keyframes kc1{
+      0%{background:repeating-radial-gradient(circle,yellow 25%,blue 30%,green 40%);}
+      25%{background:repeating-radial-gradient(circle,yellow 30%,blue 35%,green 45%);}
+      50%{background:repeating-radial-gradient(circle,yellow 35%,blue 40%,green 50%);}
+      75%{background:repeating-radial-gradient(circle,yellow 30%,blue 35%,green 45%);}
+      100%{background:repeating-radial-gradient(circle,yellow 25%,blue 30%,green 40%);}
+    }
+    #ar5{
+      animation:kc1 1s linear infinite;
+      display:inline-block;
+    }
+    @keyframes kc2{
+      0%{background:repeating-linear-gradient(100deg,red 20%,white 25%,red 30%);}
+      25%{background:repeating-linear-gradient(100deg,red 40%,white 55%,red 60%);}
+      50%{background:repeating-linear-gradient(100deg,red 60%,white 75%,red 80%);}
+      75%{background:repeating-linear-gradient(100deg,red 40%,white 55%,red 60%);}
+      100%{background:repeating-linear-gradient(100deg,red 20%,white 25%,red 30%);}
+    }
+    #ad4{
+      animation:kc2 5s linear infinite;
+      display:inline-block;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="d1"></div>
+  <div id="d2"></div>
+  <div id="d3"></div>
+  <div id="d4"></div>
+  <div id="ad4"></div>
+  <div id="d5"></div>
+
+  <div id="r1"></div>
+  <div id="r2"></div>
+  <div id="r3"></div>
+  <div id="ar5"></div>
+
+  <div id="c1"></div>
+  <div id="c2"></div>
+
+  
+</body>
+
+</html>

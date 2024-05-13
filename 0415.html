@@ -1,0 +1,85 @@
+<html>
+<head>
+<style>
+ #board{
+   dusplay:grid;
+   grid:repeat(4,80px)/80px 80px 80px;
+ }
+</style>
+<script>
+  function get(id){
+    return document.getElementById(id);
+  }
+  function gets(qs){
+    //return  Array.from(document.getElementsByClassName(qs));
+    //return  Array.from陣列(document.getElementsByTagName(qs));
+    return Array.from(document.querySelectorAll(qs)); //拿圖片
+
+    
+  }
+  function getRnd(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+  }
+  function gameStart(){
+    get("s").style.display="none";
+    cards=[1,1,2,2,3,3,4,4,5,5,6,6];
+    
+    //cards.sort(function(a,b){getRnd(-1,1);}); //打亂
+    cards.sort(function(a,b){return Math.random()-0.5;});
+    
+    imgs=gets("img");
+    for(i=0;i<imgs.length;i++){
+      imgs[i].src="pic/"+cards[i]+".png";
+    } //圖片
+    
+    setTimeout(function(){
+      gets("img").forEach(function(a){
+        a.src="pic/0.png";
+      })
+    },3000)
+    game_started=true;
+    p1=-1;p2=-1;
+  }
+  function hit(idx){
+    if(p1==-1){
+      p1=idx;
+      imgs[idx].src="pic/"+cards[idx]+".png";
+      return;
+    }
+    if(p1==idx) return;
+    if(p2==-1){
+      p2=idx;
+      imgs[idx].src="pic/"+cards[idx]+".png";
+      if(cards[p1]==cards[p2]){
+        p1=-1;p2=-1;
+        return;
+      }
+      setTimeout(function(){
+        imgs[p1].src="pic/0.png"
+        imgs[p2].src="pic/0.png"
+        p1=-1;p2=-1;
+      },1000);
+    }
+  }
+  
+</script>
+</head>
+<body>
+<div id="board">
+  <img src="pic/0.png" onclick="hit(0);">
+  <img src="pic/0.png" onclick="hit(1);">
+  <img src="pic/0.png" onclick="hit(2);">
+  <img src="pic/0.png" onclick="hit(3);"><br>
+  <img src="pic/0.png" onclick="hit(4);">
+  <img src="pic/0.png" onclick="hit(5);">
+  <img src="pic/0.png" onclick="hit(6);">
+  <img src="pic/0.png" onclick="hit(7);"><br>
+  <img src="pic/0.png" onclick="hit(8);">
+  <img src="pic/0.png" onclick="hit(9);">
+  <img src="pic/0.png" onclick="hit(10);">
+  <img src="pic/0.png" onclick="hit(11);"><br>
+  </div>
+  <button onclick="gameStart();">開始</button>
+  <button id="s" onclick="gameStop();">停</button>
+</body>
+</html>
