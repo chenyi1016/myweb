@@ -1,5 +1,111 @@
 <html>
 <head>
+  <style>
+    #tmb{
+      width:1422px;
+      height:20px;
+      background:green;
+      margin:auto;
+    }
+    #board{
+      width:1422px;
+      height:800px;
+      position: absolute;
+      left:50%;
+      transform: translate(-50%);
+      background:url("eeee/10.png");
+    }
+    #floor{
+      height:30px;
+      width:1422px;
+      position: relative;
+      top:750px;
+      background:url("eeee/f.png");
+    }
+    #t{
+      height:64px;
+      width:32px;
+      top:686px;
+      left:256px;
+      position: absolute;
+      background:url("eeee/t.png");
+    }
+    #man{
+      width:66px;
+      height:100px;
+      background:url("eeee/Idle.png");
+      position: absolute;
+      top:650px;
+      left:80px;
+      
+    }
+    .bullet {
+      width: 10px;
+      height: 5px;
+      background-color: yellow;
+      position: absolute;
+    }
+    #zombie{
+      width:66px;
+      height:100px;
+      background:url("eeee/zIdle.png");
+      position:absolute;
+      top:650px;
+      left:1262px;
+    }
+    button{
+      width:100px;
+      height:50px;
+    }
+    #bpos{
+      margin:auto;
+      width:340px;
+      height:50px;
+      margin-top:800px;
+    }
+    @keyframes mwalk{
+      0%{background:url("eeee/mw/Run1.png");}
+      25%{background:url("eeee/mw/Run2.png");}
+      50%{background:url("eeee/mw/Run2.png");}
+      75%{background:url("eeee/mw/Run2.png");}
+      100%{background:url("eeee/mw/Run1.png");}
+    }
+    @keyframes mwalk2{
+      0%{background:url("eeee/mw/Runl1.png");}
+      25%{background:url("eeee/mw/Runl2.png");}
+      50%{background:url("eeee/mw/Runl2.png");}
+      75%{background:url("eeee/mw/Runl2.png");}
+      100%{background:url("eeee/mw/Runl1.png");}
+    }
+    .mwalk-animation {
+      animation: mwalk 0.4s infinite;
+    }
+    .mwalk2-animation {
+      animation: mwalk2 0.4s infinite;
+    }
+
+    
+    @keyframes zwalk{
+      0%{background:url("eeee/zw/Run1.png");}
+      25%{background:url("eeee/zw/Run2.png");}
+      50%{background:url("eeee/zw/Run2.png");}
+      75%{background:url("eeee/zw/Run2.png");}
+      100%{background:url("eeee/zw/Run1.png");}
+    }
+    @keyframes zwalk2{
+      0%{background:url("eeee/zw/Runr1.png");}
+      25%{background:url("eeee/zw/Runr2.png");}
+      50%{background:url("eeee/zw/Runr2.png");}
+      75%{background:url("eeee/zw/Runr2.png");}
+      100%{background:url("eeee/zw/Runr1.png");}
+    }
+    .zwalk-animation {
+      animation: zwalk 0.4s infinite;
+    }
+    .zwalk2-animation {
+      animation: zwalk2 0.4s infinite;
+    }
+  </style>
   <script>
     function get(id){
       return document.getElementById(id);
@@ -7,27 +113,194 @@
     function getRnd(min,max){
       return Math.floor(Math.random()*(max-min+1))+min;
     }
+    function gets(qs){
+      return Array.from(document.querySelectorAll(qs));
+    }
+    function hard(){
+      p=8;
+    }
+    function playbgm(){
+      get("bgm").play();
+    }
+    function playl(){
+      get("l").play();
+    }
+    function playw(){
+      get("w").play();
+    }
+    function stopbgm(){
+      get("bgm").pause();
+      if(tbw<=0){
+        get("w").pause();
+      }
+      get("l").pause();
+    }
+    hdir={"s":0,"a":0,"d":0,"w":0," ":0};
+    zdir={"ArrowDown":0,"ArrowLeft":0,"ArrowRight":0,"ArrowUp":0};
+    function mykeyd(ev) {
+      ev.preventDefault();
+      if(hdir.hasOwnProperty(ev.key)){
+        hdir[ev.key]=1;
+      }
+      if(zdir.hasOwnProperty(ev.key)){
+        zdir[ev.key]=1;
+      }
+    }
+    
+    function mykeyu(ev){
+      ev.preventDefault();
+      if(hdir.hasOwnProperty(ev.key)){
+        hdir[ev.key]=0;
+      }
+      if(zdir.hasOwnProperty(ev.key)){
+        zdir[ev.key]=0;
+      }
+    }
+
+
+    function h_walk(){
+      manElement = get("man");
+      if(hdir["s"]==1 && man.y<650){
+        man.y++;
+      }else if(hdir["a"]==1 && man.x>0){
+        man.x--;
+        manElement.classList.add('mwalk2-animation');
+      }else if(hdir["d"]==1 && man.x<1342){
+        man.x++;
+        manElement.classList.add('mwalk-animation');
+      }else if(hdir["w"]==1 && man.y>0 && man.y==650){
+        man.y-=100;
+      }
+      if(man.y<650){
+        man.y+=1;
+      }
+      if(hdir[" "]==1){
+        shoot();
+      }
+      get("man").style.left=man.x+"px";
+      get("man").style.top=man.y+"px";
+      if (hdir["a"] == 0 && hdir["d"] == 0) {
+        manElement.classList.remove('mwalk2-animation');
+        manElement.classList.remove('mwalk-animation');
+      }
+    }
+    function z_walk(){
+      zElement = get("zombie");
+      if(zdir["ArrowDown"]==1 &&  zb.y<650){
+        zb.y++;
+      }else if(zdir["ArrowLeft"]==1 && zb.x>0){
+        zb.x-=2;
+        zElement.classList.add('zwalk2-animation');
+      }else if(zdir["ArrowRight"]==1 && zb.x<1342){
+        zb.x+=2;
+        zElement.classList.add('zwalk-animation');
+      }else if(zdir["ArrowUp"]==1 && zb.y>0 && zb.y==650){
+        zb.y-=120;
+      }
+      if(zb.y<650){
+        zb.y+=1;
+      }
+      get("zombie").style.left=zb.x+"px";
+      get("zombie").style.top=zb.y+"px";
+      if (zdir["ArrowLeft"] == 0 && zdir["ArrowRight"] == 0) {
+        zElement.classList.remove('zwalk2-animation');
+        zElement.classList.remove('zwalk-animation');
+      }
+      if(zb.x==man.x && zb.y==man.y || zb.x<190){
+        stop();
+        playl();
+        alert("lose");
+      }else{
+        get("man").style.width=66+"px";
+      }
+    }
+    start=false;
+    function gameStart(){ 
+      if(!start){
+      playbgm();
+      man={w:66,h:100,x:80,y:650};
+      zb={w:66,h:100,x:1262,y:650};
+      tbw=1422;
+      t1=setInterval(function(){
+        tbw-=p;
+        get("tmb").style.width=tbw+"px";
+        if(tbw<=0){
+          get("tmb").style.width=0+"px";
+          stop();
+          playw();
+          alert("win");
+        }
+      },1000)
+      t2=setInterval(h_walk, 10);
+      t3=setInterval(z_walk, 10);
+      }
+      start=true;
+    }
+    function stop(){
+      stopbgm();
+      clearInterval(t1);
+      clearInterval(t2);
+      clearInterval(t3);
+      zElement.classList.remove('zwalk2-animation');
+      zElement.classList.remove('zwalk-animation');
+      manElement.classList.remove('mwalk2-animation');
+      manElement.classList.remove('mwalk-animation');
+      start=false;
+      p=23;
+    }
+    var bulletInFlight = false;
+    function shoot(){
+      if (!bulletInFlight){
+        var b=document.createElement("div");
+        b.className="bullet";
+        b.pos={x:man.x+(man.w/2+10),y:man.y+20};
+        b.move=setInterval(bullet_move,0.5,b);
+        get("board").appendChild(b);
+        bulletInFlight = true; 
+      }
+    }
+    function bullet_move(b){
+      b.pos.x+=1;
+      b.style.left=b.pos.x+"px";
+      b.style.top=b.pos.y+"px";
+      if(b.pos.x>zb.x+100){
+        clearInterval(b.move);
+        get("board").removeChild(b);
+        bulletInFlight = false;
+      }
+      if(b.pos.x-zb.x>20 && b.pos.y-zb.y<=50 && b.pos.y>zb.y){
+        zb.x+=100;
+        clearInterval(b.move);
+        get("board").removeChild(b);
+        bulletInFlight = false;
+      }
+    }
     
   </script>
-  <style>
-    #board{
-      width:1000px;
-      height:800px;
-      margin:auto;
-      background:;
-    }
-    #human{
-      
-    }
-    #zombie{
-      
-    }
-  </style>
+  
 </head>
-<body onkeydown="mykey(event)">
+<body onkeydown="mykeyd(event);" onkeyup="mykeyu(event);">
+  <audio id="bgm">
+    <source src="eeee/music/b.mp3">
+  </audio>
+  <audio id="l">
+    <source src="eeee/music/l.mp3">
+  </audio>
+  <audio id="w">
+    <source src="eeee/music/w.mp3">
+  </audio>
+  <div id="tmb"></div>
   <div id="board">
-    <div id="human"></div>
+    <div id="man"></div>
     <div id="zombie"></div>
+    <div id="t"></div>
+    <div id="floor"></div>
   </div>
+  <div id="bpos">
+    <button onclick="gameStart();">開始</button>
+    <button onclick="hard();"> 困難</button>
+    <button onclick="stop();"> 停止</button>
+  </div>
+ 
 </body>
 </html>
